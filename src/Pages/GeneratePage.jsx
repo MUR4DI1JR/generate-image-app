@@ -29,7 +29,6 @@ const GeneratePage = () => {
     }
 
     const addHandler = () =>{
-
         const newItem = {
             id: Date.now(),
             name,
@@ -39,11 +38,7 @@ const GeneratePage = () => {
 
         const newItems = JSON.parse(localStorage.getItem('items')) || [];
 
-
         newItems.push(newItem);
-
-
-        console.log(newItems);
 
         localStorage.setItem('items', JSON.stringify(newItems));
 
@@ -100,7 +95,13 @@ const GeneratePage = () => {
                         <textarea
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            className="w-full outline-0 border border-gray-600 rounded" placeholder="Description..." name="" id="" cols="30" rows="10"/>
+                            className="w-full outline-0 border border-gray-600 rounded"
+                            placeholder="Description..."
+                            name=""
+                            id=""
+                            cols="30"
+                            rows="10"
+                        />
                         <button
                             disabled={!name}
                             onClick={addHandler}

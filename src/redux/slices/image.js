@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const initialState ={
+const initialState = {
     items: []
 }
 
@@ -13,6 +13,12 @@ const imageSlice = createSlice({
         },
         replaceState: (state, action) => {
             state.items = action.payload
+        },
+        searchItems: (state, action) => {
+            const items = state.items.filter(item => {
+                return item.name.toLowerCase().includes(action.payload.toLowerCase())
+            })
+            state.items = items
         }
     }
 });
@@ -20,4 +26,4 @@ const imageSlice = createSlice({
 export const selectItems = ({image}) => image;
 
 export const imageReducer = imageSlice.reducer;
-export const {addImageItem, replaceState} = imageSlice.actions;
+export const {addImageItem, replaceState, searchItems} = imageSlice.actions;
