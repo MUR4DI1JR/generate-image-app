@@ -15,8 +15,9 @@ const GeneratePage = () => {
 
     const generateHandler = async () =>{
         try {
-            setLoader(true)
-            const response = await axios.post('/generate-image', {prompt})
+            setLoader(true);
+
+            const response = await axios.post('/generate-image', {prompt});
             const image = response.data.image;
 
             setTimeout(async () =>{
@@ -36,15 +37,16 @@ const GeneratePage = () => {
             description
         }
 
-        const newItems = JSON.parse(localStorage.getItem('items')) || [];
+        // const newItems = JSON.parse(localStorage.getItem('items')) || [];
+        // newItems.push(newItem);
+        //
+        // localStorage.setItem('items', JSON.stringify(newItems));
+        // dispatch(addImageItem(newItem));
 
-        newItems.push(newItem);
+        axios.post('https://63ee03d35e9f1583bdba5eda.mockapi.io/items', newItem).then(() => {
+            toast.success("item added");
+        })
 
-        localStorage.setItem('items', JSON.stringify(newItems));
-
-        dispatch(addImageItem(newItem));
-
-        toast.success("item added");
     }
 
 
